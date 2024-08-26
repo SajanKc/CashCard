@@ -40,7 +40,13 @@ class SecurityConfig {
                 .roles("NON-OWNER")
                 .build();
 
-        return new InMemoryUserDetailsManager(sajan, asmitaOwnsNoCards);
+        UserDetails asmita = users
+                .username("asmita")
+                .password(passwordEncoder.encode("4321"))
+                .roles("CARD-OWNER")
+                .build();
+
+        return new InMemoryUserDetailsManager(sajan, asmitaOwnsNoCards, asmita);
     }
 
     @Bean
